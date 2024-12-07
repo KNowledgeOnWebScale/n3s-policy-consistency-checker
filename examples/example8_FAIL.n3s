@@ -3,7 +3,7 @@
 
 () :permission { :Bob :use :Car . } .
 
-# Perm(CanDrink) => Proh(CanDrive)
+# Perm(useCar) => Obl(BuyDinner)
 () log:onNegativeSurface {
     () :permission { :Bob :use :Car . } .
     () log:onNegativeSurface {
@@ -13,6 +13,7 @@
 
 :next_world :contains {
     :Bob :use :Car .
+    # oops Bob didn't do his obligation
     () log:onNegativeSurface {
         :Bob :buys :Dinner .
     } .
