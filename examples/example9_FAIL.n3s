@@ -1,0 +1,26 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+() :permission { :Bob :use :Car . } .
+
+# Perm(useCar) => Obl(BuyDinner) v Obl(BuyLunch)
+() log:onNegativeSurface {
+    () :permission { :Bob :use :Car . } .
+    () log:onNegativeSurface {
+        () :obligation { :Bob :buys :Dinner . } .
+    } .
+    () log:onNegativeSurface {
+        () :obligation { :Bob :buys :Lunch . } .
+    } .
+} .
+
+:next_world :contains {
+    :Bob :use :Car .
+    # oops Bob didn't do his obligation
+    () log:onNegativeSurface {
+        :Bob :buys :Dinner .
+    } .
+    () log:onNegativeSurface {
+        :Bob :buys :Lunch .
+    } .
+} .

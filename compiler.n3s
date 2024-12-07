@@ -38,6 +38,10 @@
     } .
 } .
 
+##
+# Need some code here to cope with disjunction (like in example9)
+##
+
 # query
 (_:What _:What2 _:L _:M _:N _:Len _:G _:Sc _:Sc2) log:onNegativeSurface {
     ( _:What { :world :contains _:What . } _:L ) log:collectAllIn _:Sc .
