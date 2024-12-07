@@ -3,7 +3,7 @@
 
 () :permission { :Bob :use :Car . } .
 
-# Perm(useCar) => Obl(BuyDinner) v Obl(BuyLunch)
+# Perm(useCar) => ( Obl(BuyDinner) v Obl(BuyLunch) )
 () log:onNegativeSurface {
     () :permission { :Bob :use :Car . } .
     () log:onNegativeSurface {
