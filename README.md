@@ -1,6 +1,6 @@
 # Deontic examples using RDF Surfaces
 
-Some exampels how to implement deontic rules using RDF Surfaces.
+Some examples how to implement deontic rules using RDF Surfaces.
 
 ## Description
 
