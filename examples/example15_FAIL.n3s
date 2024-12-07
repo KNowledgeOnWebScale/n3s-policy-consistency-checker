@@ -25,7 +25,7 @@
     } .
 } .
 
-# ( Person(X) ) => Proh(BuyAlcohol)
+# ( Person(X) & age(X,Y) & lessThan(Y,18) ) => Proh(BuyAlcohol)
 (_:X _:Age) log:onNegativeSurface {
     _:X a :Person .
     _:X :age _:Age .
@@ -35,9 +35,11 @@
     } .
 } .
 
-# Perm(BuyAlcohol)
+# ( Person(X) & age(X,Y) & greaterThan(Y,16) ) => Proh(BuyAlcohol)
 (_:X _:Age) log:onNegativeSurface {
     _:X a :Person .
+    _:X :age _:Age .
+    _:Age math:greaterThan 16 .
     () log:onNegativeSurface {
         () :permission { _:X :buys :Alcohol } .
     } .
