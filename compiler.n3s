@@ -2,6 +2,8 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 @prefix graph: <http://www.w3.org/2000/10/swap/graph#> .
 @prefix list: <http://www.w3.org/2000/10/swap/list#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 # defs
 (_:What) log:onNegativeSurface {
@@ -38,9 +40,42 @@
     } .
 } .
 
-##
-# Need some code here to cope with disjunction (like in example9)
-##
+# k4 : []p v []q -> [](p v q)
+(_:N _:L _:M _:G _:Sc) log:onNegativeSurface {
+    () log:onNegativeSurface _:N .
+
+    (_:G { 
+        _:N log:includes { 
+            () log:onNegativeSurface {
+                :world :contains {
+                    () :box _:G .
+                }.
+            } .
+        }
+    } _:L) log:collectAllIn _:Sc .
+
+    _:L list:member _:M .
+
+    () log:onNegativeSurface {
+        _:L :part {
+            () log:onNegativeSurface _:M .
+        } .
+
+        (_:P _:C _:Sc _:U _:CN) log:onNegativeSurface {
+            (_:P { _:L :part _:P} _:C) log:collectAllIn _:Sc .
+            _:C list:length _:CN .
+            _:CN math:greaterThan 1 .
+            _:C graph:union _:U .
+            () log:onNegativeSurface {
+                :world :contains {
+                    () :box {
+                        () log:onNegativeSurface _:U .
+                    }
+                } .
+            } .
+        }
+    } .
+} .
 
 # query
 (_:What _:What2 _:L _:M _:N _:Len _:G _:Sc _:Sc2) log:onNegativeSurface {
