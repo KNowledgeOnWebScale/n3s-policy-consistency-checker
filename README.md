@@ -28,6 +28,8 @@ optionally add triples that are available in the `:next_world`:
 } .
 ```
 
+See `examples/example4_FAIL.n3s` for an example of this last step.
+
 Run the `./run.sh` script in this N3S file to see if it leads to a contradiction or not.
 
 The compilated `:box` of run 1 can be seen in the `.run.n3s` file.
