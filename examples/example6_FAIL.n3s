@@ -1,7 +1,11 @@
 @prefix : <urn:example:> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
+# Proh(CanDrink & CanDrive)
 () :prohibition { :Bob :can :Drink . :Bob :can :Drive } .
 
+# Perm(CanDrink)
 () :permission { :Bob :can :Drink . } .
+
+# Pern(CanDrive)
 () :permission { :Bob :can :Drive . } .

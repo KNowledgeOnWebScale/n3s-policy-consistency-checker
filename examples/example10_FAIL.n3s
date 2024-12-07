@@ -4,18 +4,23 @@
 # Perm(UseCar)
 () :permission { :Bob :use :Car . } .
 
-# Perm(UseCar) => Obl(BuyDinner)
+# Perm(UseCar) => ( Obl(BuyDinner) v Obl(BuyLunch) )
 () log:onNegativeSurface {
     () :permission { :Bob :use :Car . } .
     () log:onNegativeSurface {
         () :obligation { :Bob :buys :Dinner . } .
     } .
+    () log:onNegativeSurface {
+        () :obligation { :Bob :buys :Lunch . } .
+    } .
 } .
 
-:next_world :contains {
-    :Bob :use :Car .
-    # oops Bob didn't do his obligation
-    () log:onNegativeSurface {
-        :Bob :buys :Dinner .
-    } .
+# Perm(~BuyDinner)
+() :permission {
+    () log:onNegativeSurface {  :Bob :buys :Dinner . } .
+} .
+
+# Perm(~BuyLunch)
+() :permission {
+    () log:onNegativeSurface {  :Bob :buys :Lunch . } .
 } .

@@ -1,5 +1,8 @@
 @prefix : <urn:example:> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
+# Perm(CanBuy)
 () :permission { :Bob :buy :Alcohol . } .
+
+# Proh(CanBuy)
 () :prohibition { :Bob :buy :Alcohol . } .
