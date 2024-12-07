@@ -1,0 +1,14 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix graph: <http://www.w3.org/2000/10/swap/graph#> .
+
+# deontic makes every box a reality in the next world (there is just one serial next world)
+(_:What) log:onNegativeSurface {
+    () :box _:What .
+    () log:onNegativeSurface _:What .
+} .
+
+(_:What) log:onNegativeSurface {
+    :next_world :contains _:What .
+    () log:onNegativeSurface _:What .
+} .

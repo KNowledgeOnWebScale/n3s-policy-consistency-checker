@@ -1,0 +1,49 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix graph: <http://www.w3.org/2000/10/swap/graph#> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+# defs
+(_:What) log:onNegativeSurface {
+    () :obligation _:What .
+    () log:onNegativeSurface {
+        :world :contains {
+            () :box _:What
+        } .
+    } .
+} .
+
+(_:What) log:onNegativeSurface {
+    () :permission _:What .
+    
+    () log:onNegativeSurface {
+        :world :contains {
+            () log:onNegativeSurface {
+                () :box {
+                    () log:onNegativeSurface _:What .
+                } .
+            } .
+        } .
+    } .
+} .
+
+(_:What) log:onNegativeSurface {
+    () :prohibition _:What .
+    () log:onNegativeSurface {
+        :world :contains {
+            () :box {
+                () log:onNegativeSurface _:What .
+            } .
+        } .
+    } .
+} .
+
+# query
+(_:What _:What2 _:L _:M _:N _:G _:Sc _:Sc2) log:onNegativeSurface {
+    ( _:What { :world :contains _:What . } _:L ) log:collectAllIn _:Sc .
+    ( { :next_world :contains _:What2 } { :next_world :contains _:What2 } _:M ) log:collectAllIn _:Sc2 .
+    ( _:L _:M ) list:append _:N . 
+    _:G graph:list _:N .
+    () log:onNegativeAnswerSurface _:G .
+} .
+
