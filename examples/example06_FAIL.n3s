@@ -7,5 +7,5 @@
 # Perm(CanDrink)
 () :permission { :Bob :can :Drink . } .
 
-# Pern(CanDrive)
+# Perm(CanDrive)
 () :permission { :Bob :can :Drive . } .

@@ -16,7 +16,7 @@
 } .
 
 :next_world :contains { 
-    # Bob can't just buy lunch and don't buy lunch
+    # Bob can't just buy dinner and don't buy lunch
     () log:onNegativeSurface {
         :Bob :buys :Lunch .
     } .
