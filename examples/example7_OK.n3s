@@ -1,0 +1,16 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+() :permission { :Bob :can :Drink . } .
+
+() log:onNegativeSurface {
+    () :permission { :Bob :can :Drink . } .
+    () log:onNegativeSurface {
+        () :prohibition { :Bob :can :Drive . } .
+    } .
+} .
+
+:next_world :contains {
+    :Bob :can :Drink .
+    :Bob :can :Drive .
+} .

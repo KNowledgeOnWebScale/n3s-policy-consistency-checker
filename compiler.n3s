@@ -39,10 +39,12 @@
 } .
 
 # query
-(_:What _:What2 _:L _:M _:N _:G _:Sc _:Sc2) log:onNegativeSurface {
+(_:What _:What2 _:L _:M _:N _:Len _:G _:Sc _:Sc2) log:onNegativeSurface {
     ( _:What { :world :contains _:What . } _:L ) log:collectAllIn _:Sc .
     ( { :next_world :contains _:What2 } { :next_world :contains _:What2 } _:M ) log:collectAllIn _:Sc2 .
     ( _:L _:M ) list:append _:N . 
+    _:N list:length _:Len .
+    _:Len log:notEqualTo 0.
     _:G graph:list _:N .
     () log:onNegativeAnswerSurface _:G .
 } .
