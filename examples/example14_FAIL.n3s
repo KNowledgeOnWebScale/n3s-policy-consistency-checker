@@ -1,0 +1,21 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+
+:Alice a :Person ;
+    :age 14 .
+
+# ( Person(X) & age(X,Y) & lessThan(Y,18)) => Proh(BuyAlcohol)
+(_:X _:Age) log:onNegativeSurface {
+    _:X a :Person .
+    _:X :age _:Age .
+    _:Age math:lessThan 18 .
+    () log:onNegativeSurface {
+        () :prohibition { _:X :buys :Alcohol } .
+    } .
+} .
+
+:next_world :contains {
+    # BuyAlcohol
+    :Alice :buys :Alcohol .
+} .

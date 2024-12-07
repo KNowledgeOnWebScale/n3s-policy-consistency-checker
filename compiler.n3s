@@ -16,6 +16,20 @@
 } .
 
 (_:What) log:onNegativeSurface {
+    () log:onNegativeSurface {
+        () :obligation _:What .
+    } .
+
+    () log:onNegativeSurface {
+        :world :contains {
+            () log:onNegativeSurface {
+                () :box _:What .
+            } .
+        } .
+    } .
+} .
+
+(_:What) log:onNegativeSurface {
     () :permission _:What .
     
     () log:onNegativeSurface {
@@ -30,11 +44,41 @@
 } .
 
 (_:What) log:onNegativeSurface {
+    () log:onNegativeSurface {
+        () :permission _:What .
+    } .
+    
+    () log:onNegativeSurface {
+        :world :contains {
+            () :box {
+                () log:onNegativeSurface _:What .
+            } .
+        } .
+    } .
+} .
+
+(_:What) log:onNegativeSurface {
     () :prohibition _:What .
     () log:onNegativeSurface {
         :world :contains {
             () :box {
                 () log:onNegativeSurface _:What .
+            } .
+        } .
+    } .
+} .
+
+(_:What) log:onNegativeSurface {
+    () log:onNegativeSurface {
+        () :prohibition _:What .
+    } .
+
+    () log:onNegativeSurface {
+        :world :contains {
+            () log:onNegativeSurface {
+                () :box {
+                    () log:onNegativeSurface _:What .
+                } .
             } .
         } .
     } .
