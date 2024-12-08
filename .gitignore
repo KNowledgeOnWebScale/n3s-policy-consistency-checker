@@ -1,2 +1,3 @@
 examples/*.out
-.run.n3s
+.compiled.n3s
+.world.n3s

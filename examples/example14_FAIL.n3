@@ -22,7 +22,7 @@
 }
 =>
 {
-    () :prohibition { _:X :use :ageVerification } .
+    () :prohibition { ?X :use :ageVerification } .
 } .
 
 :next_world :contains {

@@ -7,9 +7,8 @@ Some examples how to implement deontic rules using RDF Surfaces.
 In our experiment we need multiple runs to execute deontic rules:
 
 1. Run 1: compile `:obligation`, `:permission` and `:prohibition` into necessity `:box` ([]) statements. Compilation turns these deontic statements into RDF Surfaces with modal necessitity ([]) operators.
-2. Run 2: apply the deontic rules in RDF Surface:
-    - [] \phi in one `:world` makes \phi true in `:next_world`.
-    - <> \phi = ~[]~\phi in one `:world` makes \phi true in `:next_world` (deontic axiom).
+2. Run 2: apply the deontic rules in RDF Surface and check for policy inconsistencies
+3. Run 3: apply the RDF Surfaces on the consequences in the next workd and check for inconsistencies
 
 ## Usage
 

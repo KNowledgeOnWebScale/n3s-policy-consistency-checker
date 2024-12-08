@@ -6,7 +6,9 @@
 (_:What _:Box) log:onNegativeSurface {
     _:Box a log:ModalOperator .
     () _:Box _:What .
-    () log:onNegativeSurface _:What .
+    () log:onNegativeSurface {
+        :next_world :contains _:What .
+    } .
 } .
 
 # deontic makes every <> = ~[]~ a reality in the next world
@@ -17,10 +19,12 @@
             () log:onNegativeSurface _:What .
         } .
     } .
-    () log:onNegativeSurface _:What .
+    () log:onNegativeSurface {
+        :next_world :contains _:What .
+    } .
 } .
 
 (_:What) log:onNegativeSurface {
     :next_world :contains _:What .
-    () log:onNegativeSurface _:What .
+    () log:onNegativeAnswerSurface _:What .
 } .
