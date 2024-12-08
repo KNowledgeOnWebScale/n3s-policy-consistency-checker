@@ -1,7 +1,7 @@
 #!/bin/bash
 
-COMPILED=.compiled.n3s
-WORLD=.world.n3s
+POLICY_WORLD=.compiled.n3s
+NORMATIVE_WORLD=.world.n3s
 
 if [ "$1" == "" ]; then
   echo "usage: $0 file"
@@ -9,14 +9,14 @@ if [ "$1" == "" ]; then
 fi
 
 # Compile policies into RDF Surfaces
-eye --nope --quiet compiler.n3 "$@" --query query.n3 > ${COMPILED}
+eye --nope --quiet compiler.n3 "$@" --query query.n3 > ${POLICY_WORLD}
 
 # Run RDF Surfaces with deontic rules (check policy inconsistencies)
-eye --nope --no-bnode-relabeling --quiet deontic.n3s ${COMPILED} > ${WORLD}
+eye --nope --no-bnode-relabeling --quiet deontic.n3s ${POLICY_WORLD} > ${NORMATIVE_WORLD}
 
 if [ $? -eq 0 ]; then
   # Run RDF Surfaces on the next world (check consequence of policies for inconsistencies)
-  eye --nope --no-bnode-relabeling --quiet ${WORLD}
+  eye --nope --no-bnode-relabeling --quiet ${NORMATIVE_WORLD}
 else
   exit 2
 fi 
