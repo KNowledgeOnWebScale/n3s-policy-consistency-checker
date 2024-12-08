@@ -31,4 +31,4 @@ See `examples/example4_FAIL.n3` for an example of this last step.
 
 Run the `./run.sh` script in this N3S file to see if it leads to a contradiction or not.
 
-The compilated `:box` of run 1 can be seen in the `.run.n3s` file.
+The compilated `:box` of run 1 can be seen in the `.compiled.n3s` file. The notmative world of run 2 can be seen in the `.world.n3s` file.
