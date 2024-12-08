@@ -13,20 +13,18 @@
 :prohibition_alice a log:Prohibition .
 ##################################
 
-# Bob ###########################
-:box_bob a log:ModalOperator ;
-    :defines :obligation_bob , :permission_bob , :prohibition_bob .
+# Governement ###########################
+:box_gov a log:ModalOperator ;
+    :defines :obligation_gov , :permission_gov , :prohibition_gov .
 
 ## Define deontic operators
-:obligation_bob a log:Obligation .
-:permission_bob a log:Permission .
-:prohibition_bob a log:Prohibition .
+:obligation_gov a log:Obligation .
+:permission_gov a log:Permission .
+:prohibition_gov a log:Prohibition .
 ##################################
 
-# These policies would clash ..Alice says age can be used but Bob says it can't
+# Perm_{alice}("CompanyX use idcard for age verification")
+() :permission_alice { :CompanyX :use { :idcard :for :AgeVerification } . } .
 
-# Perm_{alice}(CompanyX use age)
-() :permission_alice { :CompanyX :use { :age :for :AgeVerification } . } .
-
-# Proh_{bob}(CharlyCanBuy)
-() :prohibition_bob { :CompanyX :use { :age :for :AgeVerification } . } .
+# Proh_{gov}("CompanyX use idcard for age verification")
+() :prohibition_gov { :CompanyX :use { :idcard :for :AgeVerification } . } .
