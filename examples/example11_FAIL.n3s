@@ -1,24 +1,22 @@
 @prefix : <urn:example:> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
 
-# Perm(UseCar)
-() :permission { :Bob :use :Car . } .
+:Alice a :Person ;
+    :age 14 .
 
-# Perm(UseCar) => ( Obl(BuyDinner & BuyLunch) v Obl(BuyLunch) )
-() log:onNegativeSurface {
-    () :permission { :Bob :use :Car . } .
-    () log:onNegativeSurface {
-        () :obligation { :Bob :buys :Dinner . :Bob :buys :Lunch . } .
-    } .
-    () log:onNegativeSurface {
-        () :obligation { :Bob :buys :Lunch . } .
-    } .
+# ( Person(X) & age(X,Y) & lessThan(Y,18)) => Proh(BuyAlcohol)
+{
+    _:X a :Person .
+    _:X :age _:Age .
+    _:Age math:lessThan 18 .
+}
+=>
+{
+    () :prohibition { _:X :buys :Alcohol . } .
 } .
 
-:next_world :contains { 
-    # Bob can't just buy dinner and don't buy lunch
-    () log:onNegativeSurface {
-        :Bob :buys :Lunch .
-    } .
-    :Bob :buys :Dinner .
+:next_world :contains {
+    # BuyAlcohol
+    :Alice :buys :Alcohol .
 } .

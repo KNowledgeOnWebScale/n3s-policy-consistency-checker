@@ -1,21 +1,35 @@
 @prefix : <urn:example:> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 @prefix math: <http://www.w3.org/2000/10/swap/math#> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
 
-:Alice a :Person ;
-    :age 14 .
+:AlicesShoes a :Shop , :ShoeShop .
+:BobsBrandy a :Shop , :LiquorShop .
 
-# ( Person(X) & age(X,Y) & lessThan(Y,18)) => Proh(BuyAlcohol)
-(_:X _:Age) log:onNegativeSurface {
-    _:X a :Person .
-    _:X :age _:Age .
-    _:Age math:lessThan 18 .
-    () log:onNegativeSurface {
-        () :prohibition { _:X :buys :Alcohol } .
-    } .
+# ( Shop(X) & LiquorShop(X) ) => ( Perm(UseAge) & Obl(MaxTime) )
+{
+    ?X a :Shop .
+    ?X a :LiquorShop .
+}
+=>
+{
+    () :permission { ?X :use :ageVerification } .
+    () :obligation { ?X :maxtime :oneYear } .
+} .
+
+# ( Shop(X) & ShoeShop(X) ) => Proh(UseAge)
+{
+    ?X a :Shop .
+    ?X a :ShoeShop .
+}
+=>
+{
+    () :prohibition { _:X :use :ageVerification } .
 } .
 
 :next_world :contains {
-    # BuyAlcohol
-    :Alice :buys :Alcohol .
+    :BobsBrandy :use :ageVerification .
+    () log:onNegativeSurface {
+        :BobsBrandy :maxtime :oneYear .
+    } .
 } .

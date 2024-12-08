@@ -5,11 +5,12 @@
 () :permission { :Bob :use :Car . } .
 
 # Perm(UseCar) => Obl(BuyDinner)
-() log:onNegativeSurface {
+{
     () :permission { :Bob :use :Car . } .
-    () log:onNegativeSurface {
-        () :obligation { :Bob :buys :Dinner . } .
-    } .
+}
+=>
+{
+    () :obligation { :Bob :buys :Dinner . } .
 } .
 
 :next_world :contains {

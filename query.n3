@@ -1,0 +1,16 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix graph: <http://www.w3.org/2000/10/swap/graph#> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+{
+    ( ?What { :world :contains ?What . } ?L ) log:collectAllIn ?Sc .
+    ( { :next_world :contains ?What2 } { :next_world :contains ?What2 } ?M ) log:collectAllIn ?Sc2 .
+    ( ?L ?M ) list:append ?N . 
+    ?N list:length ?Len .
+    ?Len log:notEqualTo 0.
+    ?G graph:list ?N .
+}
+=> ?G .

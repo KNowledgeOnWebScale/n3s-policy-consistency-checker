@@ -7,5 +7,5 @@ if [ "$1" == "" ]; then
   exit 1
 fi
 
-eye --nope --no-bnode-relabeling --quiet compiler.n3s "$@" > ${OUTPUT}
+eye --nope --quiet compiler.n3 "$@" --query query.n3 > ${OUTPUT}
 eye --nope --no-bnode-relabeling --quiet deontic.n3s ${OUTPUT}

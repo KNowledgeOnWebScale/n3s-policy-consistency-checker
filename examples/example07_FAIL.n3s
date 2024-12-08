@@ -5,11 +5,12 @@
 () :permission { :Bob :can :Drink . } .
 
 # Perm(CanDrink) => Proh(CanDrive)
-() log:onNegativeSurface {
+{
     () :permission { :Bob :can :Drink . } .
-    () log:onNegativeSurface {
-        () :prohibition { :Bob :can :Drive . } .
-    } .
+}
+=>
+{
+    () :prohibition { :Bob :can :Drive . } .
 } .
 
 :next_world :contains {
