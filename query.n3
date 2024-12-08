@@ -15,12 +15,8 @@
 
 {
     ?Box a log:ModalOperator .
-    ?Box :defines ?Deo .
-    ?Deo a ?Type .
 }
 =>
 {
     ?Box a log:ModalOperator .
-    ?Box :defines ?Deo .
-    ?Deo a ?Type .
 } .
