@@ -13,11 +13,10 @@
 :prohibition_alice a log:Prohibition .
 ##################################
 
-# Governement ###########################
+# Government ###########################
 :box_gov a log:ModalOperator ;
     :defines :obligation_gov , :permission_gov , :prohibition_gov .
 
-## Define deontic operators
 :obligation_gov a log:Obligation .
 :permission_gov a log:Permission .
 :prohibition_gov a log:Prohibition .
