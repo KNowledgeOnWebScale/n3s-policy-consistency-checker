@@ -5,25 +5,42 @@
 @prefix math: <http://www.w3.org/2000/10/swap/math#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
-# defs
+# Introduce the modal operator []
+:box a log:ModalOperator ;
+    :defines :obligation , :permission , :prohibition .
+
+# Define deontic operators
+:obligation a log:Obligation .
+:permission a log:Permission .
+:prohibition a log:Prohibition .
+
+# Define deontic operators in terms of the modal operator []
 {
-    () :obligation ?What .
+    ?Deo a log:Obligation .
+    ?Box a log:ModalOperator .
+    ?Box :defines ?Deo .
+
+    () ?Deo ?What .
 }
 =>
 {
     :world :contains {
-        () :box ?What .
+        () ?Box ?What .
     } .
 } .
 
 {
-    () :permission ?What .
+    ?Deo a log:Permission .
+    ?Box a log:ModalOperator .
+    ?Box :defines ?Deo .
+
+    () ?Deo ?What .
 }
 =>
 {
     :world :contains {
         () log:onNegativeSurface {
-            () :box {
+            () ?Box {
                 () log:onNegativeSurface ?What .
             } .
         } .
@@ -31,12 +48,16 @@
 } .
 
 {
-    () :prohibition ?What .
+    ?Deo a log:Prohibition .
+    ?Box a log:ModalOperator .
+    ?Box :defines ?Deo .
+
+    () ?Deo ?What .
 }
 =>
 {
     :world :contains {
-        () :box {
+        () ?Box {
             () log:onNegativeSurface ?What .
         } .
     } .
