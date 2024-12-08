@@ -1,0 +1,32 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# Introducing directed deontic operators. These are deontic opertors directed 
+# from an assigner to some assignee.
+
+# Alice ##########################
+:box_alice a log:ModalOperator ;
+    :defines :obligation_alice , :permission_alice , :prohibition_alice .
+
+:obligation_alice a log:Obligation .
+:permission_alice a log:Permission .
+:prohibition_alice a log:Prohibition .
+##################################
+
+# Bob ###########################
+:box_bob a log:ModalOperator ;
+    :defines :obligation_bob , :permission_bob , :prohibition_bob .
+
+## Define deontic operators
+:obligation_bob a log:Obligation .
+:permission_bob a log:Permission .
+:prohibition_bob a log:Prohibition .
+##################################
+
+# These policies would clash ..Alice says age can be used but Bob says it can't
+
+# Perm_{alice}(CompanyX use age)
+() :permission_alice { :CompanyX :use { :age :for :AgeVerification } . } .
+
+# Proh_{bob}(CharlyCanBuy)
+() :prohibition_bob { :CompanyX :use { :age :for :AgeVerification } . } .

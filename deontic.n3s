@@ -3,15 +3,17 @@
 @prefix graph: <http://www.w3.org/2000/10/swap/graph#> .
 
 # deontic makes every [] a reality in the next world (there is just one serial next world)
-(_:What) log:onNegativeSurface {
-    () :box _:What .
+(_:What _:Box) log:onNegativeSurface {
+    _:Box a log:ModalOperator .
+    () _:Box _:What .
     () log:onNegativeSurface _:What .
 } .
 
 # deontic makes every <> = ~[]~ a reality in the next world
-(_:What) log:onNegativeSurface {
+(_:What _:Box) log:onNegativeSurface {
+    _:Box a log:ModalOperator .
     () log:onNegativeSurface {
-        () :box {
+        () _:Box {
             () log:onNegativeSurface _:What .
         } .
     } .

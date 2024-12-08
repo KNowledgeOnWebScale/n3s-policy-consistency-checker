@@ -12,3 +12,15 @@
     ?G graph:list ?N .
 }
 => ?G .
+
+{
+    ?Box a log:ModalOperator .
+    ?Box :defines ?Deo .
+    ?Deo a ?Type .
+}
+=>
+{
+    ?Box a log:ModalOperator .
+    ?Box :defines ?Deo .
+    ?Deo a ?Type .
+} .
