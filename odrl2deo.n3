@@ -33,8 +33,9 @@ odrl:Agreement a deo:PolicyClass .
     {
         ?Perm odrl:duty ?Duty .
         ?Duty odrl:action ?Action2 .
-        ?Perm odrl:assigner ?Assigner .
-        ?Perm odrl:assignee ?Assignee .
+        ?Duty odrl:assigner ?Assigner .
+        ?Duty odrl:assignee ?Assignee .
+        ?Duty odrl:target ?Target2 .
         ( ?List ?Assignee ?Target ) deo:makeActionGraph ?G .
     } 
     =>
@@ -46,7 +47,7 @@ odrl:Agreement a deo:PolicyClass .
             => 
             {
                 ?Policy deo:obligation {
-                    ?Assigner ?Action2 ?Assignee .
+                    ?Assignee ?Action2 ?Target2 .
                 } .
             } .
         } .

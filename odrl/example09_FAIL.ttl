@@ -3,22 +3,22 @@
 
 ex:policy:1010 a odrl:Set ;
     odrl:permission [
-        odrl:assigner ex:Alice ;
-        odrl:assignee ex:Bob ;
+        odrl:assigner ex:Bob ;
+        odrl:assignee ex:Alice ;
         odrl:action odrl:use ;
         odrl:target ex:asset:9898.movie ;
         odrl:duty [
             odrl:action ex:signContract ;
-            odrl:assigner ex:Alice ; 
-            odrl:assignee ex:Bob ; 
+            odrl:assigner ex:Bob ; 
+            odrl:assignee ex:Alice ; 
             odrl:target ex:contract
         ]
       ] .
 
 ex:policy:1011 a odrl:Set ;
     odrl:prohibition [
-        odrl:assigner ex:Alice ;
-        odrl:assignee ex:Bob ;
+        odrl:assigner ex:Bob ;
+        odrl:assignee ex:Alice ;
         odrl:action ex:signContract ;
         odrl:target ex:contract 
       ] .
