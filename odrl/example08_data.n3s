@@ -1,0 +1,7 @@
+@prefix ex: <http://example.com/> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+() log:onNegativeSurface {
+    ex:Bob odrl:compensate ex:Alice.
+} .
