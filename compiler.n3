@@ -20,12 +20,12 @@
     ?Box a log:ModalOperator .
     ?Box :defines ?Deo .
 
-    () ?Deo ?What .
+    ?Policy ?Deo ?What .
 }
 =>
 {
     :world :contains {
-        () ?Box ?What .
+        ?Policy ?Box ?What .
     } .
 } .
 
@@ -34,13 +34,13 @@
     ?Box a log:ModalOperator .
     ?Box :defines ?Deo .
 
-    () ?Deo ?What .
+    ?Policy ?Deo ?What .
 }
 =>
 {
     :world :contains {
         () log:onNegativeSurface {
-            () ?Box {
+            ?Policy ?Box {
                 () log:onNegativeSurface ?What .
             } .
         } .
@@ -52,12 +52,12 @@
     ?Box a log:ModalOperator .
     ?Box :defines ?Deo .
 
-    () ?Deo ?What .
+    ?Policy ?Deo ?What .
 }
 =>
 {
     :world :contains {
-        () ?Box {
+        ?Policy ?Box {
             () log:onNegativeSurface ?What .
         } .
     } .
