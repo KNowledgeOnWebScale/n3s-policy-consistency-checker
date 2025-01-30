@@ -2,6 +2,15 @@
 
 Some examples how to implement deontic rules using RDF Surfaces.
 
+## Install
+
+Install https://github.com/eyereasoner/eye
+
+This code was tested on EYE versions:
+
+- EYE v10.30.16 (2024-12-09)
+- EYE v11.5.3 (2025-01-29)
+
 ## Description
 
 In our experiment we need multiple runs to execute deontic rules:
