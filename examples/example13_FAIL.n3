@@ -1,6 +1,5 @@
 @prefix deo: <https://github.com/KNowledgeOnWebScale/n3s-policy-consistency-checker/> .
 @prefix ex: <http://example.com/> .
-@prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 ex:AlicesShoes a ex:Shop , ex:ShoeShop .
 ex:BobsBrandy a ex:Shop , ex:LiquorShop .

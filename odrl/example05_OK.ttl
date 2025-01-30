@@ -1,0 +1,9 @@
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix ex: <http://example.com/> .
+
+ex:policy:1010 a odrl:Set ;
+    odrl:prohibition [
+        odrl:assigner ex:Bob ;
+        odrl:action odrl:use , ex:resell ;
+        odrl:target ex:asset:9898.movie
+      ] .

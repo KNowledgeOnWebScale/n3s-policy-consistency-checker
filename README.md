@@ -49,11 +49,17 @@ The folder `odrl` contains [ODRL](https://www.w3.org/TR/odrl-model/) examples fo
 These examples can be compiled into N3 using:
 
 ```
-./odrl2n3.sh odrl/example01_FAIL.ttl
+./run_odrl.sh odrl/example01_FAIL.ttl
 ```
 
 To run a consistency check on such a policy run:
 
 ```
-./odrl2n3.sh odrl/example01_FAIL.ttl check
+./run_odrl.sh odrl/example01_FAIL.ttl check
+```
+
+To run a consistency check on a policy with a data file run:
+
+```
+./run_odrl.sh -d odrl/example04_data.ttl odrl/example04_FAIL.ttl
 ```
