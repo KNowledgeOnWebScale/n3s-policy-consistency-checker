@@ -1,0 +1,14 @@
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix ex: <http://example.com/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+ex:policy:1010 a odrl:Set ;
+    odrl:permission [
+        odrl:assigner ex:Bob ;
+        odrl:assignee ex:Alice ;
+        odrl:action odrl:use , ex:resell ;
+        odrl:target ex:asset:9898.movie ;
+        odrl:duty [
+          odrl:action odrl:compensate 
+        ]
+      ] .

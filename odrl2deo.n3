@@ -30,13 +30,24 @@ odrl:Agreement a deo:PolicyClass .
     } .
 
     {
-        ?SCOPE log:notIncludes { ?Perm odrl:assigner ?Assigner } .
-        ( ?List deo:SomeAssignee ?Target ) deo:makeActionGraph ?G .
-    }
+        ?Perm odrl:duty ?Duty .
+        ?Duty odrl:action ?Action2 .
+        ?Perm odrl:assigner ?Assigner .
+        ?Perm odrl:assignee ?Assignee .
+        ( ?List ?Assigner ?Target ) deo:makeActionGraph ?G .
+    } 
     =>
     {
         deo:compiled deo:contains {
-            ?Policy deo:permission ?G .
+            {
+                ?Policy deo:permission ?G .
+            } 
+            => 
+            {
+                ?Policy deo:obligation {
+                    ?Assigner ?Action2 ?Assignee .
+                } .
+            } .
         } .
     } .
 } .
