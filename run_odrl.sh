@@ -31,9 +31,13 @@ if [ "${RUN}" == "check" ]; then
     temp=$(mktemp)
     eye --nope --quiet ${FILE} odrl2deo.n3 ${data} --query odrl_query.n3 > ${temp}
     ./run.sh ${temp}
+    EXIT=$?
     rm ${temp}
 else
-   eye --nope --quiet ${FILE} odrl2deo.n3 ${data} --query odrl_query.n3
+    eye --nope --quiet ${FILE} odrl2deo.n3 ${data} --query odrl_query.n3
+    EXIT=$?
 fi 
 
 rm ${data}
+
+exit ${EXIT}

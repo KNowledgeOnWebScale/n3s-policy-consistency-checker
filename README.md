@@ -63,3 +63,9 @@ To run a consistency check on a policy with a data file run:
 ```
 ./run_odrl.sh -d odrl/example04_data.ttl odrl/example04_FAIL.ttl
 ```
+
+To run all ODRL examples run:
+
+```
+./run_all_odrl.sh
+```

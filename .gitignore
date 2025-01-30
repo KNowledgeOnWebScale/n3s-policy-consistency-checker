@@ -1,3 +1,4 @@
 examples/*.out
+odrl/*.out
 .compiled.n3s
 .world.n3s
