@@ -20,8 +20,8 @@ odrl:Agreement a deo:PolicyClass .
 => 
 {
     {
-        ?Perm odrl:assigner ?Assigner .
-        ( ?List ?Assigner ?Target ) deo:makeActionGraph ?G .
+        ?Perm odrl:assignee ?Assignee .
+        ( ?List ?Assignee ?Target ) deo:makeActionGraph ?G .
     } 
     => 
     {
@@ -35,7 +35,7 @@ odrl:Agreement a deo:PolicyClass .
         ?Duty odrl:action ?Action2 .
         ?Perm odrl:assigner ?Assigner .
         ?Perm odrl:assignee ?Assignee .
-        ( ?List ?Assigner ?Target ) deo:makeActionGraph ?G .
+        ( ?List ?Assignee ?Target ) deo:makeActionGraph ?G .
     } 
     =>
     {
@@ -65,8 +65,8 @@ odrl:Agreement a deo:PolicyClass .
 => 
 {
     {
-        ?Perm odrl:assigner ?Assigner .
-        ( ?List ?Assigner ?Target ) deo:makeActionGraph ?G .
+        ?Perm odrl:assignee ?Assignee .
+        ( ?List ?Assignee ?Target ) deo:makeActionGraph ?G .
     } 
     => 
     {
@@ -76,7 +76,7 @@ odrl:Agreement a deo:PolicyClass .
     } .
 
     {
-        ?SCOPE log:notIncludes { ?Perm odrl:assigner ?Assigner } .
+        ?SCOPE log:notIncludes { ?Perm odrl:assignee ?Assignee } .
         ( ?List deo:SomeAssignee ?Target ) deo:makeActionGraph ?G .
     }
     =>
@@ -99,8 +99,8 @@ odrl:Agreement a deo:PolicyClass .
 => 
 {
     {
-        ?Perm odrl:assigner ?Assigner .
-        ( ?List ?Assigner ?Target ) deo:makeActionGraph ?G .
+        ?Perm odrl:assignee ?Assignee .
+        ( ?List ?Assignee ?Target ) deo:makeActionGraph ?G .
     } 
     => 
     {
@@ -110,7 +110,7 @@ odrl:Agreement a deo:PolicyClass .
     } .
 
     {
-        ?SCOPE log:notIncludes { ?Perm odrl:assigner ?Assigner } .
+        ?SCOPE log:notIncludes { ?Perm odrl:assignee ?Assignee } .
         ( ?List deo:SomeAssignee ?Target ) deo:makeActionGraph ?G .
     }
     =>

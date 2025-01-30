@@ -4,6 +4,7 @@
 ex:policy:1010 a odrl:Set ;
     odrl:prohibition [
         odrl:assigner ex:Bob ;
+        odrl:assignee ex:Alice ;
         odrl:action odrl:use ;
         odrl:target ex:asset:9898.movie
       ] .
@@ -11,6 +12,7 @@ ex:policy:1010 a odrl:Set ;
 ex:policy:1011 a odrl:Set ;
     odrl:obligation [
         odrl:assigner ex:Bob ;
+        odrl:assignee ex:Alice ;
         odrl:action odrl:use ;
         odrl:target ex:asset:9898.movie
       ] .

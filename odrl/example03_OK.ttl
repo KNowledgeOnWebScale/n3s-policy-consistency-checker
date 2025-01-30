@@ -4,6 +4,7 @@
 ex:policy:1010 a odrl:Set ;
     odrl:prohibition [
         odrl:assigner ex:Bob ;
+        odrl:assignee ex:Alice ;
         odrl:action odrl:use , ex:resell ;
         odrl:target ex:asset:9898.movie
       ] .
