@@ -40,4 +40,20 @@ See `examples/example4_FAIL.n3` for an example of this last step.
 
 Run the `./run.sh` script in this N3S file to see if it leads to a contradiction or not.
 
-The compilated `:box` of run 1 can be seen in the `.compiled.n3s` file. The notmative world of run 2 can be seen in the `.world.n3s` file.
+The compilated `:box` of run 1 can be seen in the `.compiled.n3s` file. The normative world of run 2 can be seen in the `.world.n3s` file.
+
+## ODRL
+
+The folder `odrl` contains [ODRL](https://www.w3.org/TR/odrl-model/) examples for policy consistency checks.
+
+These examples can be compiled into N3 using:
+
+```
+./odrl2n3.sh odrl/example01_FAIL.ttl
+```
+
+To run a consistency check on such a policy run:
+
+```
+./odrl2n3.sh odrl/example01_FAIL.ttl check
+```

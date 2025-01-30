@@ -1,0 +1,69 @@
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix deo: <https://github.com/KNowledgeOnWebScale/n3s-policy-consistency-checker/> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+odrl:Set a deo:PolicyClass .
+odrl:Offer a deo:PolicyClass .
+odrl:Agreement a deo:PolicyClass .
+
+# Translating odrl:permissons
+{
+    ?Policy a ?What .
+    ?What a deo:PolicyClass .
+    ?Policy odrl:permission ?Perm .
+    ?Perm odrl:action ?Action .
+    ?Perm odrl:target ?Target .
+}
+=> 
+{
+    {
+        ?Perm odrl:assigner ?Assigner .
+    } 
+    => 
+    {
+        deo:compiled deo:contains {
+            ?Policy deo:permission { ?Assigner ?Action ?Target } .
+        } .
+    } .
+
+    {
+        ?SCOPE log:notIncludes { ?Perm odrl:assigner ?Assigner } .
+    }
+    =>
+    {
+        deo:compiled deo:contains {
+         ?Policy deo:permission { deo:SomeAssignee ?Action ?Target } .
+        } .
+    } .
+} .
+
+# Translating odrl:prohibitions
+{
+    ?Policy a ?What .
+    ?What a deo:PolicyClass .
+    ?Policy odrl:prohibition ?Perm .
+    ?Perm odrl:action ?Action .
+    ?Perm odrl:target ?Target .
+}
+=> 
+{
+    {
+        ?Perm odrl:assigner ?Assigner .
+    } 
+    => 
+    {
+        deo:compiled deo:contains {
+            ?Policy deo:prohibition { ?Assigner ?Action ?Target } .
+        } .
+    } .
+
+    {
+        ?SCOPE log:notIncludes { ?Perm odrl:assigner ?Assigner } .
+    }
+    =>
+    {
+        deo:compiled deo:contains { 
+            ?Policy deo:prohibition { deo:SomeAssignee ?Action ?Target } .
+        } . 
+    } .
+} .
