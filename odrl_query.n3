@@ -5,3 +5,9 @@
 {
     deo:compiled deo:contains ?G .
 } => ?G .
+
+{
+    deo:next_world deo:contains ?G .
+} => {
+    deo:next_world deo:contains ?G .
+} .

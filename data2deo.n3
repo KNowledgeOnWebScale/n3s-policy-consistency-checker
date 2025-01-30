@@ -1,0 +1,18 @@
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix deo: <https://github.com/KNowledgeOnWebScale/n3s-policy-consistency-checker/> .
+@prefix graph: <http://www.w3.org/2000/10/swap/graph#> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+{
+    ( {?S ?P ?O} { 
+        ?S ?P ?O . 
+        ?P log:notEqualTo log:implies .
+        ?P log:notEqualTo deo:contains .
+    } ?L) log:collectAllIn _:x .
+    ?G graph:list ?L .
+}
+=>
+{
+    deo:next_world deo:contains ?G .
+} .
