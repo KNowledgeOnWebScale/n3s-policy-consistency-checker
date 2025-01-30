@@ -24,8 +24,8 @@ In our experiment we need multiple runs to execute deontic rules:
 Create an N3 document containing a mix of `:obligation`, `:permission` and `:prohibition` statements as in:
 
 ```
-() :permission { :Bob :buy :Alcohol . } .
-() :prohibition { :Bob :buy :Alcohol . } .
+:policy1 :permission { :Bob :buy :Alcohol . } .
+:policy2 :prohibition { :Bob :buy :Alcohol . } .
 ```
 
 optionally add triples that are available in the `:next_world`:

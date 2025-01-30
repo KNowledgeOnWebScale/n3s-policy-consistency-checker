@@ -1,19 +1,26 @@
-@prefix : <urn:example:> .
+@prefix deo: <https://github.com/KNowledgeOnWebScale/n3s-policy-consistency-checker/> .
+@prefix ex: <http://example.com/> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # Perm(CanDrink)
-() :permission { :Bob :can :Drink . } .
+ex:policy1 deo:permission { 
+    ex:Bob ex:can ex:Drink . 
+} .
 
 # Perm(CanDrink) => Proh(CanDrive)
 {
-    () :permission { :Bob :can :Drink . } .
+    ex:policy1 deo:permission { 
+        ex:Bob ex:can ex:Drink . 
+    } .
 }
 =>
 {
-    () :prohibition { :Bob :can :Drive . } .
+    ex:policy1 deo:prohibition { 
+        ex:Bob ex:can ex:Drive . 
+    } .
 } .
 
-:next_world :contains {
-    :Bob :can :Drink .
-    :Bob :can :Drive .
+deo:next_world deo:contains {
+    ex:Bob ex:can ex:Drink .
+    ex:Bob ex:can ex:Drive .
 } .

@@ -1,22 +1,30 @@
-@prefix : <urn:example:> .
+@prefix deo: <https://github.com/KNowledgeOnWebScale/n3s-policy-consistency-checker/> .
+@prefix ex: <http://example.com/> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # Perm(UseCar)
-() :permission { :Bob :use :Car . } .
+:policy1 deo:permission { 
+    ex:Bob ex:use ex:Car . 
+} .
 
 # Perm(UseCar) => Obl(BuyDinner)
 {
-    () :permission { :Bob :use :Car . } .
+    :policy1 deo:permission { 
+        ex:Bob ex:use ex:Car . 
+    } .
 }
 =>
 {
-    () :obligation { :Bob :buys :Dinner . } .
+    :policy1 deo:obligation { 
+        ex:Bob ex:buys ex:Dinner . 
+    } .
 } .
 
-:next_world :contains {
-    :Bob :use :Car .
+deo:next_world deo:contains {
+    ex:Bob ex:use ex:Car .
+
     # oops Bob didn't do his obligation
     () log:onNegativeSurface {
-        :Bob :buys :Dinner .
+        ex:Bob ex:buys ex:Dinner .
     } .
 } .

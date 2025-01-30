@@ -1,4 +1,5 @@
-@prefix : <urn:example:> .
+@prefix deo: <https://github.com/KNowledgeOnWebScale/n3s-policy-consistency-checker/> .
+@prefix ex: <http://example.com/> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 @prefix math: <http://www.w3.org/2000/10/swap/math#> .
 @prefix list: <http://www.w3.org/2000/10/swap/list#> .
@@ -22,29 +23,29 @@
 }
 =>
 {
-    ?X a :Person .
-    ?X :age ?Y .
+    ?X a ex:Person .
+    ?X ex:age ?Y .
 } .
 
 # ( Person(X) & age(X,Y) & lessThan(Y,18) ) => Proh(BuyAlcohol)
 {
-    ?X a :Person .
-    ?X :age ?Age .
+    ?X a ex:Person .
+    ?X ex:age ?Age .
     ?Age math:lessThan 18 .
 }
 =>
 {
-    () :prohibition { ?X :buys :Alcohol } .
+    ex:policy1 deo:prohibition { ?X ex:buys ex:Alcohol } .
 } .
 
-# ( Person(X) & age(X,Y) & greaterThan(Y,16) ) => Proh(BuyAlcohol)
+# ( Person(X) & age(X,Y) & greaterThan(Y,16) ) => Perm(BuyAlcohol)
 {
-    ?X a :Person .
-    ?X :age ?Age .
+    ?X a ex:Person .
+    ?X ex:age ?Age .
     ?Age math:greaterThan 16 .
 }
 => 
 {
-    () :permission { ?X :buys :Alcohol } .
+    ex:policy2 deo:permission { ?X ex:buys ex:Alcohol } .
 } .
 

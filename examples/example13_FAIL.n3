@@ -1,28 +1,29 @@
-@prefix : <urn:example:> .
+@prefix deo: <https://github.com/KNowledgeOnWebScale/n3s-policy-consistency-checker/> .
+@prefix ex: <http://example.com/> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
-:AlicesShoes a :Shop , :ShoeShop .
-:BobsBrandy a :Shop , :LiquorShop .
+ex:AlicesShoes a ex:Shop , ex:ShoeShop .
+ex:BobsBrandy a ex:Shop , ex:LiquorShop .
 
 # ( LiquorShop(X) ) => Perm(UseAge)
 {
-    ?X a :Shop .
-    ?X a :LiquorShop .
+    ?X a ex:Shop .
+    ?X a ex:LiquorShop .
 }
 =>
 {
-    () :permission { ?X :use :ageVerification . } .
+    ex:policy1 deo:permission { ?X ex:use ex:ageVerification . } .
 } .
 
 # ( ShoeShop(X) ) => Proh(UseAge)
 {
-    ?X a :ShoeShop .
+    ?X a ex:ShoeShop .
 }
 =>
 {
-    () :prohibition { ?X :use :ageVerification } .
+    ex:policy2 deo:prohibition { ?X ex:use ex:ageVerification } .
 } .
 
-:next_world :contains {
-    :AlicesShoes :use :ageVerification .
+deo:next_world deo:contains {
+    ex:AlicesShoes ex:use ex:ageVerification .
 } .

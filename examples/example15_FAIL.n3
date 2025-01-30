@@ -1,29 +1,30 @@
-@prefix : <urn:example:> .
+@prefix deo: <https://github.com/KNowledgeOnWebScale/n3s-policy-consistency-checker/> .
+@prefix ex: <http://example.com/> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # Introducing directed deontic operators. These are deontic opertors directed 
 # from an assigner to some assignee.
 
 # Alice ##########################
-:box_alice a log:ModalOperator ;
-    :defines :obligation_alice , :permission_alice , :prohibition_alice .
+ex:box_alice a log:ModalOperator ;
+    deo:defines ex:obligation_alice , ex:permission_alice , ex:prohibition_alice .
 
-:obligation_alice a log:Obligation .
-:permission_alice a log:Permission .
-:prohibition_alice a log:Prohibition .
+ex:obligation_alice a log:Obligation .
+ex:permission_alice a log:Permission .
+ex:prohibition_alice a log:Prohibition .
 ##################################
 
 # Government ###########################
-:box_gov a log:ModalOperator ;
-    :defines :obligation_gov , :permission_gov , :prohibition_gov .
+ex:box_gov a log:ModalOperator ;
+    deo:defines ex:obligation_gov , ex:permission_gov , ex:prohibition_gov .
 
-:obligation_gov a log:Obligation .
-:permission_gov a log:Permission .
-:prohibition_gov a log:Prohibition .
+ex:obligation_gov a log:Obligation .
+ex:permission_gov a log:Permission .
+ex:prohibition_gov a log:Prohibition .
 ##################################
 
 # Perm_{alice}("CompanyX use idcard for age verification")
-() :permission_alice { :CompanyX :use { :idcard :for :AgeVerification } . } .
+ex:policy1 ex:permission_alice { ex:CompanyX ex:use { ex:idcard ex:for ex:AgeVerification } . } .
 
 # Proh_{gov}("CompanyX use idcard for age verification")
-() :prohibition_gov { :CompanyX :use { :idcard :for :AgeVerification } . } .
+ex:policy2 ex:prohibition_gov { ex:CompanyX ex:use { ex:idcard ex:for ex:AgeVerification } . } .

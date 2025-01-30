@@ -1,8 +1,9 @@
-@prefix : <urn:example:> .
+@prefix deo: <https://github.com/KNowledgeOnWebScale/n3s-policy-consistency-checker/> .
+@prefix ex: <http://example.com/> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # Proh(CanBuy)
-() :prohibition { :Bob :buy :Alcohol . } .
+ex:policy1 deo:prohibition { ex:Bob ex:buy ex:Alcohol . } .
 
 # Obl(CanBuy)
-() :obligation { :Bob :buy :Alcohol . } .
+ex:policy2 deo:obligation { ex:Bob ex:buy ex:Alcohol . } .

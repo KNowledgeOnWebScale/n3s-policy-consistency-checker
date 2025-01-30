@@ -1,33 +1,35 @@
-@prefix : <urn:example:> .
+@prefix deo: <https://github.com/KNowledgeOnWebScale/n3s-policy-consistency-checker/> .
+@prefix ex: <http://example.com/> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
-:AlicesShoes a :Shop , :ShoeShop .
-:BobsBrandy a :Shop , :LiquorShop .
+ex:AlicesShoes a ex:Shop , ex:ShoeShop .
+ex:BobsBrandy a ex:Shop , ex:LiquorShop .
 
 # ( Shop(X) & LiquorShop(X) ) => ( Perm(UseAge) & Obl(MaxTime) )
 {
-    ?X a :Shop .
-    ?X a :LiquorShop .
+    ?X a ex:Shop .
+    ?X a ex:LiquorShop .
 }
 =>
 {
-    () :permission { ?X :use :ageVerification } .
-    () :obligation { ?X :maxtime :oneYear } .
+    ex:policy1 deo:permission { ?X ex:use ex:ageVerification } .
+    ex:policy1 deo:obligation { ?X ex:maxtime ex:oneYear } .
 } .
 
 # ( Shop(X) & ShoeShop(X) ) => Proh(UseAge)
 {
-    ?X a :Shop .
-    ?X a :ShoeShop .
+    ?X a ex:Shop .
+    ?X a ex:ShoeShop .
 }
 =>
 {
-    () :prohibition { ?X :use :ageVerification } .
+    ex:policy2 deo:prohibition { ?X ex:use ex:ageVerification } .
 } .
 
-:next_world :contains {
-    :BobsBrandy :use :ageVerification .
+deo:next_world deo:contains {
+    ex:BobsBrandy ex:use ex:ageVerification .
+
     () log:onNegativeSurface {
-        :BobsBrandy :maxtime :oneYear .
+        ex:BobsBrandy ex:maxtime ex:oneYear .
     } .
 } .
