@@ -1,0 +1,14 @@
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix ex: <http://example.com/> .
+
+ex:policy:1010 a odrl:Set ;
+    odrl:prohibition [
+        odrl:action odrl:use ;
+        odrl:target ex:asset:9898.movie
+      ] .
+
+ex:policy:1011 a odrl:Set ;
+    odrl:obligation [
+        odrl:action odrl:use ;
+        odrl:target ex:asset:9898.movie
+      ] .

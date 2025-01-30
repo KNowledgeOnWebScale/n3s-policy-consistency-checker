@@ -1,6 +1,8 @@
 @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
 @prefix deo: <https://github.com/KNowledgeOnWebScale/n3s-policy-consistency-checker/> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix graph: <http://www.w3.org/2000/10/swap/graph#> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
 
 odrl:Set a deo:PolicyClass .
 odrl:Offer a deo:PolicyClass .
@@ -11,28 +13,30 @@ odrl:Agreement a deo:PolicyClass .
     ?Policy a ?What .
     ?What a deo:PolicyClass .
     ?Policy odrl:permission ?Perm .
-    ?Perm odrl:action ?Action .
     ?Perm odrl:target ?Target .
+    ( ?Action { ?Perm odrl:action ?Action } ?List ) log:collectAllIn _:x .
 }
 => 
 {
     {
         ?Perm odrl:assigner ?Assigner .
+        ( ?List ?Assigner ?Target ) deo:makeActionGraph ?G .
     } 
     => 
     {
         deo:compiled deo:contains {
-            ?Policy deo:permission { ?Assigner ?Action ?Target } .
+            ?Policy deo:permission ?G .
         } .
     } .
 
     {
         ?SCOPE log:notIncludes { ?Perm odrl:assigner ?Assigner } .
+        ( ?List deo:SomeAssignee ?Target ) deo:makeActionGraph ?G .
     }
     =>
     {
         deo:compiled deo:contains {
-         ?Policy deo:permission { deo:SomeAssignee ?Action ?Target } .
+            ?Policy deo:permission ?G .
         } .
     } .
 } .
@@ -42,28 +46,92 @@ odrl:Agreement a deo:PolicyClass .
     ?Policy a ?What .
     ?What a deo:PolicyClass .
     ?Policy odrl:prohibition ?Perm .
-    ?Perm odrl:action ?Action .
     ?Perm odrl:target ?Target .
+    ( ?Action { ?Perm odrl:action ?Action } ?List ) log:collectAllIn _:x .
 }
 => 
 {
     {
         ?Perm odrl:assigner ?Assigner .
+        ( ?List ?Assigner ?Target ) deo:makeActionGraph ?G .
     } 
     => 
     {
         deo:compiled deo:contains {
-            ?Policy deo:prohibition { ?Assigner ?Action ?Target } .
+            ?Policy deo:prohibition ?G .
         } .
     } .
 
     {
         ?SCOPE log:notIncludes { ?Perm odrl:assigner ?Assigner } .
+        ( ?List deo:SomeAssignee ?Target ) deo:makeActionGraph ?G .
     }
     =>
     {
         deo:compiled deo:contains { 
-            ?Policy deo:prohibition { deo:SomeAssignee ?Action ?Target } .
+            ?Policy deo:prohibition ?G .
         } . 
     } .
+} .
+
+# Translating odrl:obligation
+{
+    ?Policy a ?What .
+    ?What a deo:PolicyClass .
+    ?Policy odrl:obligation ?Perm .
+    ?Perm odrl:target ?Target .
+    ( ?Action { ?Perm odrl:action ?Action } ?List ) log:collectAllIn _:x .
+}
+=> 
+{
+    {
+        ?Perm odrl:assigner ?Assigner .
+        ( ?List ?Assigner ?Target ) deo:makeActionGraph ?G .
+    } 
+    => 
+    {
+        deo:compiled deo:contains {
+            ?Policy deo:obligation ?G .
+        } .
+    } .
+
+    {
+        ?SCOPE log:notIncludes { ?Perm odrl:assigner ?Assigner } .
+        ( ?List deo:SomeAssignee ?Target ) deo:makeActionGraph ?G .
+    }
+    =>
+    {
+        deo:compiled deo:contains { 
+            ?Policy deo:obligation ?G .
+        } . 
+    } .
+} .
+
+# Helper functions
+
+# Create an Graph G from an Action list
+{
+    ( ?List ?Assignee ?Target ) deo:makeActionGraph ?G .
+}
+<=
+{
+    ( ?List ?Assignee ?Target () ) deo:_makeActionGraph ?GL .
+    ?G graph:list ?GL .
+} .
+
+{
+    ( () ?Assignee ?Target ?Acc ) deo:_makeActionGraph ?Acc .
+}
+<= true .
+
+{
+    ( ?List ?Assignee ?Target ?Acc ) deo:_makeActionGraph ?G .
+}
+<= 
+{
+    ?List list:length ?N .
+    ?N log:notEqualTo 0 .
+    ?List list:firstRest (?H ?T) .
+    ( ?Acc ( { ?Assignee ?H ?Target } ) ) list:append ?Acc2 .
+    ( ?T ?Assignee ?Target ?Acc2 ) deo:_makeActionGraph ?G .
 } .
