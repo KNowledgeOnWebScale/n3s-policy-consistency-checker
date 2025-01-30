@@ -8,12 +8,13 @@ odrl:Set a deo:PolicyClass .
 odrl:Offer a deo:PolicyClass .
 odrl:Agreement a deo:PolicyClass .
 
-# Translating odrl:permissons
+# Translating odrl:permission (without constraints)
 {
     ?Policy a ?What .
     ?What a deo:PolicyClass .
     ?Policy odrl:permission ?Perm .
     ?Perm odrl:target ?Target .
+    ?SCOPE log:notIncludes { ?Perm odrl:constraint ?Constraint } .
     ( ?Action { ?Perm odrl:action ?Action } ?List ) log:collectAllIn _:x .
 }
 => 
@@ -52,12 +53,13 @@ odrl:Agreement a deo:PolicyClass .
     } .
 } .
 
-# Translating odrl:prohibitions
+# Translating odrl:prohibition (without constraints)
 {
     ?Policy a ?What .
     ?What a deo:PolicyClass .
     ?Policy odrl:prohibition ?Perm .
     ?Perm odrl:target ?Target .
+    ?SCOPE log:notIncludes { ?Perm odrl:constraint ?Constraint } .
     ( ?Action { ?Perm odrl:action ?Action } ?List ) log:collectAllIn _:x .
 }
 => 
@@ -85,12 +87,13 @@ odrl:Agreement a deo:PolicyClass .
     } .
 } .
 
-# Translating odrl:obligation
+# Translating odrl:obligation (without constraints)
 {
     ?Policy a ?What .
     ?What a deo:PolicyClass .
     ?Policy odrl:obligation ?Perm .
     ?Perm odrl:target ?Target .
+    ?SCOPE log:notIncludes { ?Perm odrl:constraint ?Constraint } .
     ( ?Action { ?Perm odrl:action ?Action } ?List ) log:collectAllIn _:x .
 }
 => 
