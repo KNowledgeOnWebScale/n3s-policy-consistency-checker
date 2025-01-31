@@ -8,6 +8,9 @@ ex:policy:1010 a odrl:Set ;
         odrl:action odrl:use ;
         odrl:target ex:asset:9898.movie ;
         odrl:duty [
-          odrl:action odrl:compensate 
+            odrl:action odrl:compensate ;
+            odrl:assigner ex:Bob ; 
+            odrl:assignee ex:Alice ; 
+            odrl:target ex:payment 
         ]
       ] .
