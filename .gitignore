@@ -1,4 +1,4 @@
-examples/*.out
-odrl/*.out
+examples/n3/*.out
+examples/odrl/*.out
 .compiled.n3s
 .world.n3s
