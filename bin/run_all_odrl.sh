@@ -11,9 +11,9 @@ for f in odrl/*_{FAIL,OK}.ttl; do
     BASE=$(echo $f | sed -E 's/(_OK|_FAIL).*//g')
 
     if [[ -f "${BASE}_data.ttl" ]] || [[ -f "${BASE}_data.n3s" ]]; then
-        ./run_odrl.sh -d ${BASE}_data.* $f check > $f.out 2>&1 
+        ./bin/run_odrl.sh -d ${BASE}_data.* $f check > $f.out 2>&1 
     else
-        ./run_odrl.sh $f check > $f.out 2>&1 
+        ./bin/run_odrl.sh $f check > $f.out 2>&1 
     fi
 
     if [ $? -eq 0 ]; then

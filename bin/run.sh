@@ -9,10 +9,10 @@ if [ "$1" == "" ]; then
 fi
 
 # Compile policies into RDF Surfaces
-eye --nope --quiet compiler.n3 "$@" --query query.n3 > ${POLICY_WORLD}
+eye --nope --quiet src/n3/eye/compiler.n3 "$@" --query src/n3/eye/query.n3 > ${POLICY_WORLD}
 
 # Run RDF Surfaces with deontic rules (check policy inconsistencies)
-eye --nope --no-bnode-relabeling --quiet deontic.n3s ${POLICY_WORLD} > ${NORMATIVE_WORLD}
+eye --nope --no-bnode-relabeling --quiet src/n3s/deontic.n3s ${POLICY_WORLD} > ${NORMATIVE_WORLD}
 
 if [ $? -eq 0 ]; then
   # Run RDF Surfaces on the next world (check consequence of policies for inconsistencies)

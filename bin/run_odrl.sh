@@ -24,17 +24,17 @@ fi
 data=$(mktemp)
 
 if [ "${DATA}" != "" ]; then
-    eye --nope --quiet --pass-only-new data2deo.n3 ${DATA} > ${data}
+    eye --nope --quiet --pass-only-new src/n3/eye/data2deo.n3 ${DATA} > ${data}
 fi
 
 if [ "${RUN}" == "check" ]; then
     temp=$(mktemp)
-    eye --nope --quiet ${FILE} odrl2deo.n3 ${data} --query odrl_query.n3 > ${temp}
-    ./run.sh ${temp}
+    eye --nope --quiet ${FILE} src/n3/eye/odrl2deo.n3 ${data} --query src/n3/eye/odrl_query.n3 > ${temp}
+    ./bin/run.sh ${temp}
     EXIT=$?
     rm ${temp}
 else
-    eye --nope --quiet ${FILE} odrl2deo.n3 ${data} --query odrl_query.n3
+    eye --nope --quiet ${FILE} src/n3/eye/odrl2deo.n3 ${data} --query src/n3/eye/odrl_query.n3
     EXIT=$?
 fi 
 

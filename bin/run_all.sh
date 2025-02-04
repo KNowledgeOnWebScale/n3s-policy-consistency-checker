@@ -7,7 +7,7 @@ NORMAL="\033[0;39m"
 
 for f in examples/*.n3; do
     echo -n "$f ..."
-    ./run.sh $f > $f.out 2>&1 
+    ./bin/run.sh $f > $f.out 2>&1 
     if [ $? -eq 0 ]; then
         if [[ $f =~ OK ]]; then
             echo -e "${GREEN}OK${NORMAL}"

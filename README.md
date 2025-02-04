@@ -38,9 +38,15 @@ optionally add triples that are available in the `:next_world`:
 
 See `examples/example4_FAIL.n3` for an example of this last step.
 
-Run the `./run.sh` script in this N3S file to see if it leads to a contradiction or not.
+Run the `./bin/run.sh` script on this N3S file to see if it leads to a contradiction or not.
 
 The compilated `:box` of run 1 can be seen in the `.compiled.n3s` file. The normative world of run 2 can be seen in the `.world.n3s` file.
+
+To run all N3 examples execute:
+
+```
+make n3
+```
 
 ## ODRL
 
@@ -49,23 +55,23 @@ The folder `odrl` contains [ODRL](https://www.w3.org/TR/odrl-model/) examples fo
 These examples can be compiled into N3 using:
 
 ```
-./run_odrl.sh odrl/example01_FAIL.ttl
+./bin/run_odrl.sh odrl/example01_FAIL.ttl
 ```
 
 To run a consistency check on such a policy run:
 
 ```
-./run_odrl.sh odrl/example01_FAIL.ttl check
+./bin/run_odrl.sh odrl/example01_FAIL.ttl check
 ```
 
 To run a consistency check on a policy with a data file run:
 
 ```
-./run_odrl.sh -d odrl/example04_data.ttl odrl/example04_FAIL.ttl
+./bin/run_odrl.sh -d odrl/example04_data.ttl odrl/example04_FAIL.ttl
 ```
 
-To run all ODRL examples run:
+To run all ODRL examples execute:
 
 ```
-./run_all_odrl.sh
+make odrl
 ```
