@@ -1,0 +1,16 @@
+** ERROR ** eam ** inference_fuse(
+@prefix ex: <http://example.com/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix r: <http://www.w3.org/2000/10/swap/reason#>.
+@prefix var: <http://www.w3.org/2000/10/swap/var#>.
+@prefix skolem: <https://eyereasoner.github.io/.well-known/genid/08df2512-9848-451c-9adb-5321ab1503bb#>.
+@prefix n3: <http://www.w3.org/2004/06/rei#>.
+
+# inference fuse
+{
+    ex:AlicesShoes ex:use ex:ageVerification.
+    () log:onNegativeSurface {
+        ex:AlicesShoes ex:use ex:ageVerification.
+    }.
+} => false.
+)

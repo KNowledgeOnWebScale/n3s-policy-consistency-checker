@@ -1,0 +1,16 @@
+** ERROR ** eam ** inference_fuse(
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix ex: <http://example.com/>.
+@prefix r: <http://www.w3.org/2000/10/swap/reason#>.
+@prefix var: <http://www.w3.org/2000/10/swap/var#>.
+@prefix skolem: <https://eyereasoner.github.io/.well-known/genid/82eda367-8a94-4e7e-848a-898488a14a48#>.
+@prefix n3: <http://www.w3.org/2004/06/rei#>.
+
+# inference fuse
+{
+    ex:Bob ex:buy ex:Alcohol.
+    () log:onNegativeSurface {
+        ex:Bob ex:buy ex:Alcohol.
+    }.
+} => false.
+)

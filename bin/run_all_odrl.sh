@@ -5,7 +5,7 @@ PINK="\033[35m"
 GREEN="\033[32m"
 NORMAL="\033[0;39m"
 
-for f in odrl/*_{FAIL,OK}.ttl; do
+for f in examples/odrl/*_{FAIL,OK}.ttl; do
     echo -n "$f ..."
 
     BASE=$(echo $f | sed -E 's/(_OK|_FAIL).*//g')

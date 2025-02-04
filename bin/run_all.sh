@@ -5,7 +5,7 @@ PINK="\033[35m"
 GREEN="\033[32m"
 NORMAL="\033[0;39m"
 
-for f in examples/*.n3; do
+for f in examples/n3/*.n3; do
     echo -n "$f ..."
     ./bin/run.sh $f > $f.out 2>&1 
     if [ $? -eq 0 ]; then

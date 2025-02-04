@@ -1,0 +1,17 @@
+** ERROR ** eam ** inference_fuse(
+@prefix ex: <http://example.com/>.
+@prefix odrl: <http://www.w3.org/ns/odrl/2/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix r: <http://www.w3.org/2000/10/swap/reason#>.
+@prefix var: <http://www.w3.org/2000/10/swap/var#>.
+@prefix skolem: <https://eyereasoner.github.io/.well-known/genid/da8f2314-ccb4-4860-889e-8e5177deb8f4#>.
+@prefix n3: <http://www.w3.org/2004/06/rei#>.
+
+# inference fuse
+{
+    ex:Alice odrl:use ex:asset:9898.movie.
+    () log:onNegativeSurface {
+        ex:Alice odrl:use ex:asset:9898.movie.
+    }.
+} => false.
+)

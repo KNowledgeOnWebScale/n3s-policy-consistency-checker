@@ -1,0 +1,16 @@
+** ERROR ** eam ** inference_fuse(
+@prefix ex: <http://example.com/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix r: <http://www.w3.org/2000/10/swap/reason#>.
+@prefix var: <http://www.w3.org/2000/10/swap/var#>.
+@prefix skolem: <https://eyereasoner.github.io/.well-known/genid/dce39fb6-3e49-4dbd-951c-e439d4d08b1d#>.
+@prefix n3: <http://www.w3.org/2004/06/rei#>.
+
+# inference fuse
+{
+    ex:BobsBrandy ex:maxtime ex:oneYear.
+    () log:onNegativeSurface {
+        ex:BobsBrandy ex:maxtime ex:oneYear.
+    }.
+} => false.
+)
