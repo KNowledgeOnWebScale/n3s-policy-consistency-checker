@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"></script>
+    <script src="https://eyereasoner.github.io/eye-js/latest/index.js"></script>
+    <script src="reason.js"></script>
+  </head>
+  <body>
+    <main class="container">
+
+  <h1>Deontic Policy Consistency Checker</h1>
+  <div id="result" style="color:brown; font-weight: bold; font-size: 120%"></div>
+  <table>
+    <tr>
+      <td>
+        <h3>Data</h3>
+        <i>Optionally profile a state of the world in Turtle format.</i>
+        <textarea id="data" rows="15" cols="55">
+        </textarea> 
+      </td>
+      <td>
+        <h3>Policies</h3>
+        <i>ODRL policies in Turtle format.</i>
+  <textarea id="policy" rows="15" cols="55">
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix ex: <http://example.com/> .
+
+ex:policy:1010 a odrl:Set ;
+    odrl:prohibition [
+        odrl:assigner ex:Bob ;
+        odrl:assignee ex:Alice ;
+        odrl:action odrl:use ;
+        odrl:target ex:asset:9898.movie
+      ] .
+
+ex:policy:1011 a odrl:Set ;
+    odrl:obligation [
+        odrl:assigner ex:Bob ;
+        odrl:assignee ex:Alice ;
+        odrl:action odrl:use ;
+        odrl:target ex:asset:9898.movie
+      ] .
+</textarea>
+    </td>
+    </tr>
+    </table>
+    <button id="execute">Execute</button>
+    <hr>
+    <p>This is a demonstration to evaluate policies for internal inconsistencies.</p>
+    <p>We use a subset of the ODRL model. See <a href="https://github.com/KNowledgeOnWebScale/n3s-policy-consistency-checker/tree/main/examples/odrl">https://github.com/KNowledgeOnWebScale/n3s-policy-consistency-checker/tree/main/examples/odrl</a>
+    for more examples.</p>
+    <hr>
+
+    <h2>Details</h2>
+    <h3>Modal compiled</h3>
+    <i>Modal version of the policies and data.</i>
+    <pre id="modal_result"></pre>
+    <h3>Applying deontic logic rules on modal version/</h3>
+    <pre id="normative_result"></pre>
+</main>
+  </body>
+</html>
