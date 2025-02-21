@@ -157,7 +157,7 @@ function escapeHtml(unsafe)
 }
 
 async function load_files() {
-    background_n3 = await getFile('n3s/eye/background.n3');
+    background_n3 = await getFile('n3/eye/background.n3');
     deodata_n3 = await getFile('n3/eye/data2deo.n3');
     deo_n3 = await getFile('n3/eye/odrl2deo.n3');
     deo_query = await getFile('n3/eye/odrl_query.n3');
