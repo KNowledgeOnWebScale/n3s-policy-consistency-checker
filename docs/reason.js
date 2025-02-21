@@ -10,6 +10,8 @@ $( document ).ready(async function() {
     console.log( "document loaded" );
 
     load_files();
+    dragNdrop('data');
+    dragNdrop('policy');
 
     $('#execute').on("click", async () => {
         const IS_OK = '&#x1F60C;';
@@ -168,4 +170,39 @@ async function load_files() {
     modal_query = await getFile('n3/eye/query.n3');
     deontic_compile = await getFile('n3s/deontic.n3s');
     $('#execute').removeAttr("disabled");
+}
+
+async function dragNdrop(id) {
+    var $textarea = $(`#${id}`);
+
+    $textarea.attr("draggable", "true");
+
+    // Enable text drag-and-drop functionality
+    $textarea.on('dragover', (e) => {
+        e.preventDefault(); 
+        $(this).css('border', '2px solid #4CAF50'); //
+    });
+
+    $textarea.on('dragleave', (e) => {
+        $(this).css('border', '1px solid #ccc');
+    });
+
+    $textarea.on('drop', (e) => {
+        e.preventDefault(); // Prevent the default handling (e.g., opening the file)
+
+        // Get the file from the dropped data
+        var file = e.originalEvent.dataTransfer.files[0];
+
+        if (file) {
+            var reader = new FileReader();
+
+            // When file is loaded, insert its content into the textarea
+            reader.onload = function (event) {
+              $textarea.val(event.target.result); // Insert the content into the textarea
+            };
+
+            // Read the file as text
+            reader.readAsText(file);
+        } 
+    });
 }
