@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <title>DPCC - Deontic Policy Consistency Checker</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
     <script
   src="https://code.jquery.com/jquery-3.7.1.min.js"
   integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
@@ -14,8 +13,7 @@
   <body>
     <main class="container">
 
-  <h1>Deontic Policy Consistency Checker</h1>
-  <div id="result" style="color:brown; font-weight: bold; font-size: 120%"></div>
+  <h1>DPCC - Deontic Policy Consistency Checker</h1>
   <table>
     <tr>
       <td>
@@ -27,6 +25,9 @@
 
 # ex:Alice odrl:use ex:asset:9898.movie .
         </textarea> 
+      </td>
+      <td>
+       <div id="result" style="color:brown; font-weight: bold; font-size: 200%"></div>
       </td>
       <td>
         <h3>Policies</h3>
@@ -56,9 +57,20 @@ ex:policy:1011 a odrl:Set ;
     </table>
     <button id="execute">Execute</button>
     <hr>
-    <p>This is a demonstration to evaluate policies for internal inconsistencies.</p>
+    <p>This is a demonstration to evaluate policies for internal inconsistencies. When the consistency checker is happy you'll see an &#x1F60C; emoticon. If not, you'll see a &#x1F631; emoticon.</p>
     <p>We use a subset of the ODRL model. See <a href="https://github.com/KNowledgeOnWebScale/n3s-policy-consistency-checker/tree/main/examples/odrl">https://github.com/KNowledgeOnWebScale/n3s-policy-consistency-checker/tree/main/examples/odrl</a>
-    for more examples.</p>
+    for more examples. The DPCC subset is limited to:
+      <ul>
+         <li>Every ODRL Rule contains an <tt>assigner</tt>, <tt>assignee</tt>, <tt>action</tt> and <tt>target</tt> property;</li>
+         <li>An ODRL Permission Rule has optionally a <tt>duty</tt> property;</li>
+         <li><b>No policy inheritance</b> is in place: all policies need to be normalized in a form that does not require inheritance;</li>
+         <li><b>No policy conflict strategies</b> are in place: the assumption that a default conflict setting of <tt>invalid</tt> is assumed;</li>
+         <li><b>No refinement property</b> for ODRL <tt>assigner</tt>, <tt>assignee</tt>, <tt>action</tt> and <tt>target</tt>;</li>
+         <li><b>No consequence property</b> for ODRL permissions and obligations;</li>
+         <li><b>No remedy property</b> for ODRL prohibitions;</li>
+         <li><b>No constraint properties</b> for ODRL rules.</li>
+      </ul>
+    </p>
     <hr>
 
     <h2>Details</h2>

@@ -319,6 +319,8 @@ $( document ).ready(function() {
     console.log( "document loaded" );
 
     $('#execute').on("click", async () => {
+        const IS_OK = '&#x1F60C;';
+        const IS_ERROR = '&#x1F631;';
         const policy = $("#policy").val();
         const data = $("#data").val();
 
@@ -352,8 +354,8 @@ $( document ).ready(function() {
                 $('#modal_result').html(escapeHtml(modal));
             }
             catch (e) {
-                $('#modal_result').html(`<b>Unsatisfiable!</b>`);  
-                $('#result').html(`<b>Unsatisfiable!</b>`);  
+                $('#modal_result').html(`<b>Unsatisfiable</b>`);  
+                $('#result').html(IS_ERROR);  
             }
         }
 
@@ -366,8 +368,8 @@ $( document ).ready(function() {
                 $('#normative_result').html(escapeHtml(normative));
             }
             catch (e) {
-                $('#normative_result').html(`<b>Unsatisfiable!</b>`);  
-                $('#result').html(`<b>Unsatisfiable!</b>`);  
+                $('#normative_result').html(`<b>Unsatisfiable</b>`);  
+                $('#result').html(IS_ERROR);  
             }
         }
 
@@ -375,10 +377,10 @@ $( document ).ready(function() {
             try {
                 const result = await normative2check(normative);
                 console.log(`RESULT:\n${result}`);
-                $('#result').html(`Everything seems ok`); 
+                $('#result').html(IS_OK); 
             }
             catch (e) {
-                $('#result').html(`Unsatisfiable!`);  
+                $('#result').html(IS_ERROR);  
             }
         }
     });
