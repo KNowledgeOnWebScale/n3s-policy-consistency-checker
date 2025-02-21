@@ -4,7 +4,7 @@
 @prefix odrl: <http://www.w3.org/ns/odrl/2/>.
 @prefix r: <http://www.w3.org/2000/10/swap/reason#>.
 @prefix var: <http://www.w3.org/2000/10/swap/var#>.
-@prefix skolem: <https://eyereasoner.github.io/.well-known/genid/88bceb98-6a7a-4d1e-9571-1e3c485f8208#>.
+@prefix skolem: <https://eyereasoner.github.io/.well-known/genid/0bdc848c-a7b3-4c73-bbeb-5001161987e7#>.
 @prefix n3: <http://www.w3.org/2004/06/rei#>.
 
 # inference fuse

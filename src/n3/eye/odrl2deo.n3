@@ -54,6 +54,62 @@ odrl:Agreement a deo:PolicyClass .
     } .
 } .
 
+# Translating odrl:permission (with constraints)
+{
+    ?Policy a ?What .
+    ?What a deo:PolicyClass .
+    ?Policy odrl:permission ?Perm .
+    ?Perm odrl:assignee ?Assignee .
+    ?Perm odrl:target ?Target .
+    ?Perm odrl:constraint ?Constraint .
+
+    # Constraint check
+    ?Constraint odrl:leftOperand ?Left .
+    ?Constraint odrl:operator ?Operator .
+    ?Constraint odrl:rightOperand ?Right .
+
+    ?Assignee ?Left ?Value . 
+    ?Value ?Operator ?Right .
+
+    ( ?Action { ?Perm odrl:action ?Action } ?List ) log:collectAllIn _:x .
+}
+=> 
+{
+    {
+        ?Perm odrl:assignee ?Assignee .
+        ( ?List ?Assignee ?Target ) deo:makeActionGraph ?G .
+    } 
+    => 
+    {
+        deo:compiled deo:contains {
+            ?Policy deo:permission ?G .
+        } .
+    } .
+
+    {
+        ?Perm odrl:duty ?Duty .
+        ?Duty odrl:action ?Action2 .
+        ?Duty odrl:assigner ?Assigner .
+        ?Duty odrl:assignee ?Assignee .
+        ?Duty odrl:target ?Target2 .
+        ( ?List ?Assignee ?Target ) deo:makeActionGraph ?G .
+    } 
+    =>
+    {
+        deo:compiled deo:contains {
+            {
+                ?Policy deo:permission ?G .
+            } 
+            => 
+            {
+                ?Policy deo:obligation {
+                    ?Assignee ?Action2 ?Target2 .
+                } .
+            } .
+        } .
+    } .
+} .
+
 # Translating odrl:prohibition (without constraints)
 {
     ?Policy a ?What .
@@ -88,6 +144,50 @@ odrl:Agreement a deo:PolicyClass .
     } .
 } .
 
+# Translating odrl:prohibition (with constraints)
+{
+    ?Policy a ?What .
+    ?What a deo:PolicyClass .
+    ?Policy odrl:prohibition ?Perm .
+    ?Perm odrl:assignee ?Assignee .
+    ?Perm odrl:target ?Target .
+    ?Perm odrl:constraint ?Constraint .
+
+    # Constraint check
+    ?Constraint odrl:leftOperand ?Left .
+    ?Constraint odrl:operator ?Operator .
+    ?Constraint odrl:rightOperand ?Right .
+
+    ?Assignee ?Left ?Value . 
+    ?Value ?Operator ?Right .
+
+    ( ?Action { ?Perm odrl:action ?Action } ?List ) log:collectAllIn _:x .
+}
+=> 
+{
+    {
+        ?Perm odrl:assignee ?Assignee .
+        ( ?List ?Assignee ?Target ) deo:makeActionGraph ?G .
+    } 
+    => 
+    {
+        deo:compiled deo:contains {
+            ?Policy deo:prohibition ?G .
+        } .
+    } .
+
+    {
+        ?SCOPE log:notIncludes { ?Perm odrl:assignee ?Assignee } .
+        ( ?List deo:SomeAssignee ?Target ) deo:makeActionGraph ?G .
+    }
+    =>
+    {
+        deo:compiled deo:contains { 
+            ?Policy deo:prohibition ?G .
+        } . 
+    } .
+} .
+
 # Translating odrl:obligation (without constraints)
 {
     ?Policy a ?What .
@@ -95,6 +195,50 @@ odrl:Agreement a deo:PolicyClass .
     ?Policy odrl:obligation ?Perm .
     ?Perm odrl:target ?Target .
     ?SCOPE log:notIncludes { ?Perm odrl:constraint ?Constraint } .
+    ( ?Action { ?Perm odrl:action ?Action } ?List ) log:collectAllIn _:x .
+}
+=> 
+{
+    {
+        ?Perm odrl:assignee ?Assignee .
+        ( ?List ?Assignee ?Target ) deo:makeActionGraph ?G .
+    } 
+    => 
+    {
+        deo:compiled deo:contains {
+            ?Policy deo:obligation ?G .
+        } .
+    } .
+
+    {
+        ?SCOPE log:notIncludes { ?Perm odrl:assignee ?Assignee } .
+        ( ?List deo:SomeAssignee ?Target ) deo:makeActionGraph ?G .
+    }
+    =>
+    {
+        deo:compiled deo:contains { 
+            ?Policy deo:obligation ?G .
+        } . 
+    } .
+} .
+
+# Translating odrl:obligation (with constraints)
+{
+    ?Policy a ?What .
+    ?What a deo:PolicyClass .
+    ?Policy odrl:obligation ?Perm .
+    ?Perm odrl:assignee ?Assignee .
+    ?Perm odrl:target ?Target .
+    ?Perm odrl:constraint ?Constraint .
+
+    # Constraint check
+    ?Constraint odrl:leftOperand ?Left .
+    ?Constraint odrl:operator ?Operator .
+    ?Constraint odrl:rightOperand ?Right .
+
+    ?Assignee ?Left ?Value . 
+    ?Value ?Operator ?Right .
+
     ( ?Action { ?Perm odrl:action ?Action } ?List ) log:collectAllIn _:x .
 }
 => 

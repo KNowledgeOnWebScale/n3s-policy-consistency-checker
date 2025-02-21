@@ -2,3 +2,4 @@
 @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
 
 ex:Alice ex:age 17 .
+ex:Alice odrl:use ex:asset:9898.movie . 

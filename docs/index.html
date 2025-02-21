@@ -66,12 +66,12 @@ ex:policy:1011 a odrl:Set ;
       <ul>
          <li>Every ODRL Rule contains an <tt>assigner</tt>, <tt>assignee</tt>, <tt>action</tt> and <tt>target</tt> property;</li>
          <li>An ODRL Permission Rule has optionally a <tt>duty</tt> property;</li>
+         <li>An ODRL Rule optionally has a <tt>constraint</tt> property using N3 built-ins as operand.</li>
          <li><b>No policy inheritance</b> is in place: all policies need to be normalized in a form that does not require inheritance;</li>
          <li><b>No policy conflict strategies</b> are in place: the assumption that a default conflict setting of <tt>invalid</tt> is assumed;</li>
          <li><b>No refinement property</b> for ODRL <tt>assigner</tt>, <tt>assignee</tt>, <tt>action</tt> and <tt>target</tt>;</li>
          <li><b>No consequence property</b> for ODRL permissions and obligations;</li>
          <li><b>No remedy property</b> for ODRL prohibitions;</li>
-         <li><b>No constraint properties</b> for ODRL rules.</li>
       </ul>
     </p>
     <hr>

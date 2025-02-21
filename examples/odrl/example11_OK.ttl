@@ -1,0 +1,16 @@
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix ex: <http://example.com/> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+
+ex:policy:1010 a odrl:Set ;
+    odrl:permission [
+        odrl:assigner ex:Bob ;
+        odrl:assignee ex:Alice ;
+        odrl:action odrl:use ;
+        odrl:target ex:asset:9898.movie ;
+        odrl:constraint [
+            odrl:leftOperand ex:age ;
+            odrl:operator math:lessThan ;
+            odrl:rightOperand 18
+        ]
+      ] .
