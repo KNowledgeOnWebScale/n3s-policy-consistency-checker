@@ -33,7 +33,7 @@ $( document ).ready(async function() {
 
         let deo;
         try {
-            deo = await odrl2deo(deo_data,policy);
+            deo = await odrl2deo(deo_data,policy,data);
             console.log(`DEO:\n${deo}`);
             $('#deo_result').html(escapeHtml(deo));
         }
@@ -91,8 +91,11 @@ async function data2deo(data) {
     return str;
 }
 
-async function odrl2deo(data1,data2) {
-    const N3 = deo_n3 + "\n#**data***\n\n" + data1 + "\n#**policies***\n\n" + data2 + "\n#**background***\n\n" + background_n3;
+async function odrl2deo(data1,data2,data3) {
+    const N3 = deo_n3 + "\n#**deo data***\n\n" + data1 + 
+                        "\n#**policies***\n\n" + data2 + 
+                        "\n#**data***\n\n" + data3 +
+                        "\n#**background***\n\n" + background_n3;
     const str = await eyereasoner.n3reasoner(N3,deo_query, {
         outputType: 'string'
     });
