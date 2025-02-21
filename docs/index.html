@@ -22,8 +22,11 @@
         <textarea id="data" rows="15" cols="55">
 @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
 @prefix ex: <http://example.com/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-# ex:Alice odrl:use ex:asset:9898.movie .
+#ex:play rdfs:subPropertyOf odrl:use .
+#ex:Alice ex:play ex:asset:9898.movie .
+        
         </textarea> 
       </td>
       <td>

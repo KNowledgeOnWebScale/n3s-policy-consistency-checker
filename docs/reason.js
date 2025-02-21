@@ -1,3 +1,65 @@
+let background_n3 = `
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+
+{
+    ?X rdfs:domain ?Y .
+}
+=>
+{
+    {
+        ?U ?X ?V .
+    }
+    =>
+    {
+        ?U rdf:type ?Y .
+    } .
+} .
+
+{
+    ?X rdfs:range ?Y .
+}
+=>
+{
+    {
+        ?U ?X ?V .
+    }
+    =>
+    {
+        ?V rdf:type ?Y .
+    } .
+} .
+
+{
+    ?X rdfs:subClassOf ?Y .
+}
+=>
+{
+    {
+        ?U rdf:type ?X .
+    }
+    =>
+    {
+        ?U rdf:type ?Y.
+    } .
+} .
+
+{
+    ?X rdfs:subPropertyOf ?Y .
+}
+=>
+{
+    {
+        ?U ?X ?V .
+    }
+    =>
+    {
+        ?U ?Y ?V.
+    } .
+} .
+`;
+
 let deodata_n3 = `
 @prefix odrl: <http://www.w3.org/ns/odrl/2/> .
 @prefix deo: <https://github.com/KNowledgeOnWebScale/n3s-policy-consistency-checker/> .
@@ -387,7 +449,7 @@ $( document ).ready(function() {
 });
 
 async function data2deo(data) {
-    const N3 = deodata_n3 + "\n#**data***\n\n" + data;
+    const N3 = deodata_n3 + "\n#**data***\n\n" + data + "\n#**background***\n\n" + background_n3;
     const str = await eyereasoner.n3reasoner(N3,undefined, {
         output: 'derivations',
         outputType: 'string'
@@ -396,7 +458,7 @@ async function data2deo(data) {
 }
 
 async function odrl2deo(data1,data2) {
-    const N3 = deo_n3 + "\n#**data***\n\n" + data1 + "\n#**policies***\n\n" + data2;
+    const N3 = deo_n3 + "\n#**data***\n\n" + data1 + "\n#**policies***\n\n" + data2 + "\n#**background***\n\n" + background_n3;
     const str = await eyereasoner.n3reasoner(N3,deo_query, {
         outputType: 'string'
     });
