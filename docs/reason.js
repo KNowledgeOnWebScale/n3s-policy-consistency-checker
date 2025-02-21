@@ -2,13 +2,6 @@ let background_n3 = `
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix dct: <http://purl.org/dc/terms/> .
-@prefix owl: <http://www.w3.org/2002/07/owl#>.
-
-# OWL
-{?A owl:differentFrom ?B} => {?B owl:differentFrom ?A}.
-{?X owl:sameAs ?Y} => {?Y owl:sameAs ?X}.
-{?X owl:sameAs ?Y. ?Y owl:sameAs ?Z} => {?X owl:sameAs ?Z}.
-{?X owl:sameAs ?Y. ?X owl:differentFrom ?Y} => false.
 
 # RDFS
 {
@@ -391,10 +384,13 @@ $( document ).ready(function() {
     $('#execute').on("click", async () => {
         const IS_OK = '&#x1F60C;';
         const IS_ERROR = '&#x1F631;';
+        const IS_BUSY = '&#x1F634;';
         const policy = $("#policy").val();
         const data = $("#data").val();
 
         let deo_data;
+
+        $('#result').html(IS_BUSY);  
 
         try {
             deo_data = await data2deo(data);
